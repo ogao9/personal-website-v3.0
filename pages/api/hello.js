@@ -1,5 +1,12 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
+
+// This function is a request handler
 export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+	if(req.method !== 'POST'){
+		res.status(405).send({ error: `method ${req.method} not allowed`});
+	}
+
+
+
+	
 }
