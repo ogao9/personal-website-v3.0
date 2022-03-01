@@ -1,13 +1,21 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
 	content: [
 		"./pages/**/*.{js,ts,jsx,tsx}",
 		"./components/**/*.{js,ts,jsx,tsx}",
 	],
+	darkMode: 'class',
 	theme: {
 		extend: {
+			fontFamily: {
+				'sans': ['Source Sans Pro', ...defaultTheme.fontFamily.sans],
+			},
 			colors: {
-				'navyblue' : '#0A1D2F',
-				'textslate': '#8892B0'
+				'maize' : '#FFC700',
+				'nightly' : '#586079',
+				'trappedDarkness' :'#0A1D2F',
+				'awesomeViolet' : '#a8b2d1',
 			},
 		},
 	},

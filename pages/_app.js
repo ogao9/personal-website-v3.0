@@ -1,3 +1,5 @@
+import { ThemeProvider } from 'next-themes'
+
 import Layout from '../components/Layout'
 import '../styles/globals.css'
 
@@ -8,9 +10,11 @@ config.autoAddCss = false
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<Layout>
-			<Component {...pageProps} />
-		</Layout>
+		<ThemeProvider defaultTheme="system" attribute="class">
+			<Layout>
+				<Component {...pageProps} />
+			</Layout>
+		</ThemeProvider>
 	)
 }
 
