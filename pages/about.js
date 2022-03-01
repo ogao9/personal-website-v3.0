@@ -1,6 +1,7 @@
-import Head from "next/head"
 import Link from "next/link"
 import Image from "next/image"
+
+import MetaHead from "../components/MetaHead"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilePdf, faPaperPlane} from '@fortawesome/free-solid-svg-icons'
@@ -9,11 +10,10 @@ import { faLinkedinIn, faGithub } from "@fortawesome/free-brands-svg-icons"
 export default function About() {
 	return (
 		<>
-		<Head>
-			<title>Oliver Gao | About</title>
-			<meta name="description" content="About me." />
-			<link rel="icon" href="/favicon.ico" />
-		</Head>
+		<MetaHead
+			title="Oliver Gao | About"
+			description="About me"
+		/>
 
 		<div className="pt-16 sm:pt-20">
 			<section className="pb-12">
@@ -36,20 +36,16 @@ export default function About() {
 					</section>
 					<section className="flex space-x-8 my-10">
 						<a href="https://www.linkedin.com/in/oliver-gao/" target="_blank">
-							<FontAwesomeIcon icon={faLinkedinIn} size="lg"/> LinkedIn
+							<FontAwesomeIcon icon={faLinkedinIn} size="lg" /> LinkedIn
 						</a>
 						<a href="https://github.com/ogao9" target="_blank">
 							<FontAwesomeIcon icon={faGithub} size="lg"/> Github
 						</a>
 						<Link href="/resume.pdf">
-							<a><FontAwesomeIcon icon={faFilePdf} size="lg"/>
-								Resume
-							</a> 
+							<a><FontAwesomeIcon icon={faFilePdf} size="lg"/> Resume</a> 
 						</Link>
 						<Link href="/contact">
-							<a><FontAwesomeIcon icon={faPaperPlane} size="lg"/>
-								Contact Me
-							</a> 
+							<a><FontAwesomeIcon icon={faPaperPlane} size="lg"/> Contact Me</a> 
 						</Link>
 					</section>
 				</div>

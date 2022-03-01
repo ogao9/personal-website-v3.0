@@ -3,7 +3,8 @@ import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, fa} from '@fortawesome/free-solid-svg-icons'
+import { faXmark} from '@fortawesome/free-regular-svg-icons'
 
 import ThemeToggler from './ThemeToggler'
 
@@ -28,6 +29,9 @@ export default function Navbar() {
 	useEffect(() => {
 		const changeWidth = () => {
 			setScreenWidth(window.innerWidth);
+
+			if(window.innerWidth < 768)
+				setOpen(false);
 		}
 
 		changeWidth(); // initial call when page is mounted
@@ -41,28 +45,26 @@ export default function Navbar() {
 
 
 	return (
-		<div className="sticky top-0 px-6 dark:bg-trappedDarkness dark:text-awesomeViolet">
+		<div className="sticky top-0 px-6 py-5 bg-white text-black dark:bg-trappedDarkness dark:text-awesomeViolet z-50">
 			<nav className="max-w-[1024px] mx-auto flex flex-col items-start md:flex-row md:items-end justify-between">
-				<div className="py-4">
-					<Link href="/">
-						<a><h1 className="text-4xl">Oliver Gao</h1></a>
-					</Link>
-				</div>
+				<Link href="/">
+					<a><h1 className="text-4xl">Oliver Gao</h1></a>
+				</Link>
 
-				<div className="absolute top-0 right-0 py-4 px-6 md:hidden" onClick={()=>setOpen(!open)}>
+				<div className="absolute top-0 right-0 self-end px-6 pt-5 md:hidden" onClick={()=>setOpen(!open)}>
 					<button>
-						<FontAwesomeIcon icon={faBars} size="2x" />
+						<FontAwesomeIcon icon={open? faXmark: faBars} size="lg"/>
 					</button>
 				</div>
 
 				{ (open || screenWidth > 768) && (
-				<div className="absolute top-full inset-x-0 md:w-max md:relative">
-					<ul className='w-full flex flex-col space-y-6 pb-4 md:w-max md:flex-row md:space-y-0 md:space-x-8 md:py-4 md:items-center text-center'>
+				<div className="absolute top-full inset-x-0 md:w-max md:relative text-center">
+					<ul className='w-full flex flex-col space-y-6 pb-4 md:w-max md:flex-row md:space-y-0 md:space-x-8 md:pb-0'>
 						<li><Link href="/about"><a>About</a></Link></li>
 						<li><Link href="/projects"><a>Projects</a></Link></li>
 						<li><Link href="/blog"><a>Blog</a></Link></li>
-						<li className=""><ThemeToggler/></li>
 						<li className="md:hidden"><Link href="/contact"><a>Contact</a></Link></li>
+						<li><ThemeToggler/></li>
 					</ul>
 				</div>
 				)}

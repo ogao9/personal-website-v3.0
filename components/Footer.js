@@ -4,8 +4,8 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons"
 
 export default function Footer() {
 	return (
-		<footer className="px-6 dark:bg-trappedDarkness dark:text-awesomeViolet">
-			<div className="max-w-[1024px] mx-auto flex items-center justify-center md:justify-between py-6 lg:px-0">
+		<footer className="px-6">
+			<div className="max-w-[1024px] mx-auto flex items-center justify-center md:justify-between py-6">
 				<p>Created with <FontAwesomeIcon icon={faHeart} size="xs"/> by Me</p>
 
 				<nav className="hidden md:block">
