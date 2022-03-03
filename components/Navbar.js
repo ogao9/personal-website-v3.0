@@ -1,22 +1,24 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useState, useEffect } from "react"
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, fa} from '@fortawesome/free-solid-svg-icons'
-import { faXmark} from '@fortawesome/free-regular-svg-icons'
+import { useState, useEffect} from "react"
 
 import ThemeToggler from './ThemeToggler'
+import useScrollDirection from "./useScrollDirection"
 
-export default function Navbar() {
-	// logic behind showing the links
-	//		show if:
-	// 		1. open is set to true  - OR - 
-	//		2. the screen width is larger than the [md] breakpoint (768px)
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faXmark} from '@fortawesome/free-solid-svg-icons'
+import Logo from "./Logo"
 
-	const [open, setOpen] = useState(false)
+// Props:
+// - open control the mobile menu
+export default function Navbar({ open, setOpen}) {
+
 	const [screenWidth, setScreenWidth] = useState(0)
 	const router = useRouter()
+
+	// Scroll-up triggered navigation bar
+	const goingUp = useScrollDirection();
+	const [scrolled, setScrolled] = useState(false);
 
 	// Close the menu every time the page changes
     useEffect(() => {
@@ -25,18 +27,18 @@ export default function Navbar() {
         }
     }, [router.asPath]);
 
-	// Change value of screenwidth when component is mounted AND add an event listener
+	// Handle changes in screen width
 	useEffect(() => {
 		const changeWidth = () => {
 			setScreenWidth(window.innerWidth);
 
-			if(window.innerWidth < 768)
+			// close mobile menu if larger than [sm] breakpoint
+			if(window.innerWidth > 640)
 				setOpen(false);
+			
 		}
-
-		changeWidth(); // initial call when page is mounted
-	  
-		window.addEventListener('resize', changeWidth) // add event listener
+		changeWidth(); // change value of screenwidth when component is mounted
+		window.addEventListener('resize', changeWidth) // add resize event listener
 
 		return () =>{
 			window.removeEventListener('resize', changeWidth); // cleanup
@@ -44,31 +46,57 @@ export default function Navbar() {
     }, []);
 
 
+	useEffect(() => {
+		window.onscroll = function() {
+			if (window.scrollY > 72)
+				setScrolled(true);
+			else
+				setScrolled(false);
+		};
+	}, []);
+
+	const menuToggleClick = () =>{
+		setOpen(!open);
+	}
+
 	return (
-		<div className="sticky top-0 px-6 py-5 bg-white text-black dark:bg-trappedDarkness dark:text-awesomeViolet z-50">
-			<nav className="max-w-[1024px] mx-auto flex flex-col items-start md:flex-row md:items-end justify-between">
+		<div className={`sticky h-[72px] z-50
+						bg-white text-black dark:bg-trappedDarkness dark:text-awesomeViolet 
+						px-6 pt-6 pb-4 
+						transition-[top] duration-500
+						${goingUp ? 'top-0' : 'top-[-72px]'}
+						${scrolled ? 'shadow dark:shadow-md dark:shadow-gray-900' : ''}
+						`}
+		>
+			<nav className="max-w-[1024px] mx-auto flex flex-col sm:flex-row sm:items-end sm:justify-between">
 				<Link href="/">
-					<a><h1 className="text-4xl">Oliver Gao</h1></a>
+					<a><Logo/></a>
 				</Link>
 
-				<div className="absolute top-0 right-0 self-end px-6 pt-5 md:hidden" onClick={()=>setOpen(!open)}>
+				<div className="absolute top-0 right-0 px-6 pt-8 sm:hidden" onClick={menuToggleClick}>
 					<button>
-						<FontAwesomeIcon icon={open? faXmark: faBars} size="lg"/>
+						<FontAwesomeIcon icon={open ? faXmark: faBars} size="lg"/>
 					</button>
 				</div>
 
-				{ (open || screenWidth > 768) && (
-				<div className="absolute top-full inset-x-0 md:w-max md:relative text-center">
-					<ul className='w-full flex flex-col space-y-6 pb-4 md:w-max md:flex-row md:space-y-0 md:space-x-8 md:pb-0'>
+				{ (open || screenWidth > 640) && 
+				(<div className="absolute top-full inset-x-0 text-center sm:relative sm:w-max">
+					<ul className={`w-full flex flex-col space-y-12
+								   sm:w-max sm:flex-row sm:space-y-0 sm:space-x-8 sm:h-auto
+								   pb-4 sm:pb-0
+								   ${open ? 'bg-white dark:bg-trappedDarkness h-screen pt-20 text-xl' : 'h-0'}
+								   `}
+					>
 						<li><Link href="/about"><a>About</a></Link></li>
 						<li><Link href="/projects"><a>Projects</a></Link></li>
 						<li><Link href="/blog"><a>Blog</a></Link></li>
-						<li className="md:hidden"><Link href="/contact"><a>Contact</a></Link></li>
+						<li className="sm:hidden"><Link href="/contact"><a>Contact</a></Link></li>
 						<li><ThemeToggler/></li>
 					</ul>
-				</div>
-				)}
+				</div>)
+				}
 			</nav>
 		</div>
 	)
 }
+
