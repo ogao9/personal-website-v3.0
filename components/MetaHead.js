@@ -17,5 +17,5 @@ export default function MetaHead({ title, description }){
 MetaHead.defaultProps = {
     title: "Oliver Gao",
     description:
-        "I'm a student at the University of Michigan studying Computer Science. I'm interested in programming, working with data, and seeing how modern technology can make a positive impact on some of our world's biggest challenges",
+        "I'm a student at the University of Michigan studying Computer Science.",
 };

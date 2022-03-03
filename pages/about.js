@@ -35,10 +35,10 @@ export default function About() {
 						</p>
 					</section>
 					<section className="flex space-x-8 my-10">
-						<a href="https://www.linkedin.com/in/oliver-gao/" target="_blank">
+						<a href="https://www.linkedin.com/in/oliver-gao/" target="_blank" rel="noreferrer">
 							<FontAwesomeIcon icon={faLinkedinIn} size="lg" /> LinkedIn
 						</a>
-						<a href="https://github.com/ogao9" target="_blank">
+						<a href="https://github.com/ogao9" target="_blank" rel="noreferrer">
 							<FontAwesomeIcon icon={faGithub} size="lg"/> Github
 						</a>
 						<Link href="/resume.pdf">
