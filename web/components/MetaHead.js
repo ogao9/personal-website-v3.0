@@ -3,7 +3,7 @@ import Head from "next/head";
 export default function MetaHead({ title, description }){
     return (
         <Head>
-            <title>{title}</title>
+            <title>{title} | Oliver Gao</title>
             <meta name="author" content="Oliver Gao" />
             <meta
                 name="description"

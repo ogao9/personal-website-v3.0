@@ -54,8 +54,8 @@ export default function About() {
 					<Image
 						src="/oliverRunning.png"
 						alt="Picture of me running"
-						width={375}
-						height={375}
+						width={400}
+						height={400}
 						className="rounded-md"
 					/>
 				</section>

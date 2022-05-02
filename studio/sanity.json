@@ -1,10 +1,10 @@
 {
   "root": true,
   "project": {
-    "name": "Oliver's Personal Website"
+    "name": "Personal Website"
   },
   "api": {
-    "projectId": "mzyvk713",
+    "projectId": "6e4wp4r2",
     "dataset": "production"
   },
   "plugins": [

@@ -60,12 +60,12 @@ export default function Navbar({ open, setOpen}) {
 	}
 
 	return (
-		<div className={`sticky h-[72px] z-50
+		<div className={`sticky h-[72px] z-50 opacity-95
 						bg-white text-black dark:bg-trappedDarkness dark:text-awesomeViolet 
-						px-6 pt-6 pb-4 
+						px-6 py-5
 						transition-[top] duration-500
 						${goingUp ? 'top-0' : 'top-[-72px]'}
-						${scrolled ? 'shadow dark:shadow-md dark:shadow-gray-900' : ''}
+						${scrolled ? 'shadow-md dark:shadow-lg dark:shadow-gray-900' : ''}
 						`}
 		>
 			<nav className="max-w-[1024px] mx-auto flex flex-col sm:flex-row sm:items-end sm:justify-between">
@@ -82,7 +82,7 @@ export default function Navbar({ open, setOpen}) {
 				{ (open || screenWidth > 640) && 
 				(<div className="absolute top-full inset-x-0 text-center sm:relative sm:w-max">
 					<ul className={`w-full flex flex-col space-y-12
-								   sm:w-max sm:flex-row sm:space-y-0 sm:space-x-8 sm:h-auto
+								   sm:w-max sm:flex-row sm:items-center sm:space-y-0 sm:space-x-8 sm:h-auto
 								   pb-4 sm:pb-0
 								   ${open ? 'bg-white dark:bg-trappedDarkness h-screen pt-20 text-xl' : 'h-0'}
 								   `}

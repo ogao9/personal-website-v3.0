@@ -17,7 +17,7 @@ export default function Home() {
 				<h1 className="text-6xl sm:text-7xl font-semibold"> Hello! I'm Oliver.</h1>
 			</section>
 			
-			<section className="max-w-2xl mx-auto text-center text-nightly dark:text-awesomeViolet">
+			<section className="max-w-2xl mx-auto text-center">
 				<p className="md:text-lg">I’m a second-year student at the <span className="text-yellow-500 font-semibold">University of Michigan</span> studying computer science and data science.
 					I'm interested in building meaningful software and extracting valuable insight from data to do good in the world.
 				</p>
