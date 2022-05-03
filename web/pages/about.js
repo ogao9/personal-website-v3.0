@@ -1,6 +1,5 @@
 import Link from "next/link"
 import Image from "next/image"
-
 import MetaHead from "../components/MetaHead"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,7 +10,7 @@ export default function About() {
 	return (
 		<>
 		<MetaHead
-			title="Oliver Gao | About"
+			title="About"
 			description="About me"
 		/>
 
@@ -54,6 +53,7 @@ export default function About() {
 					<Image
 						src="/oliverRunning.png"
 						alt="Picture of me running"
+						priority={true}
 						width={400}
 						height={400}
 						className="rounded-md"

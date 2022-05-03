@@ -1,37 +1,11 @@
 import Link from 'next/link'
+import MetaHead from "../../components/MetaHead";
 import groq from 'groq'
-import imageUrlBuilder from '@sanity/image-url'
-import blocksToHtml from "@sanity/block-content-to-html"
-import readingTime from "reading-time";
+import client from '../../lib/client'
+import { urlFor, prettyDate, getReadingTime } from '../../lib/utils';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
-import MetaHead from "../../components/MetaHead";
-import client from '../../client'
-
-
-function prettyDate(dateString){
-    const date = new Date(dateString);
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-    return monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
-}
-
-
-function getReadingTime(content){
-    const html = blocksToHtml({
-        blocks: content,
-      })
-
-    const stats = readingTime(html);
-
-    return Math.ceil(stats.minutes) + ' min read';
-}
-
-
-function urlFor (source) {
-	return imageUrlBuilder(client).image(source)
-}
 
 
 function BlogStrip({post}){
@@ -55,7 +29,7 @@ function BlogStrip({post}){
                 <img
                     src={urlFor(post.mainImage).url()}
                     alt="Blog Cover Image"
-                    className="w-20 sm:w-28 aspect-[4/3]"
+                    className="w-20 sm:w-28 aspect-video"
                 />
             </div>
         </div>
@@ -102,10 +76,16 @@ export async function getStaticProps(){
 		title,
 		excerpt,
 		"slug" : slug.current,
-		"category" : categories[0]->title,
+		"category" : category->title,
 		mainImage,
 		publishedAt,
-		body
+		body[]{
+                ..., 
+                asset->{
+                ...,
+                "_key": _id
+                }
+        }
 	}|order(date desc)`
 
 	const posts =  await client.fetch(query)

@@ -9,10 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark} from '@fortawesome/free-solid-svg-icons'
 import Logo from "./Logo"
 
-// Props:
-// - open control the mobile menu
-export default function Navbar({ open, setOpen}) {
 
+export default function Navbar({ open, setOpen}) {
 	const [screenWidth, setScreenWidth] = useState(0)
 	const router = useRouter()
 
@@ -63,9 +61,9 @@ export default function Navbar({ open, setOpen}) {
 		<div className={`sticky h-[72px] z-50 opacity-95
 						bg-white text-black dark:bg-trappedDarkness dark:text-awesomeViolet 
 						px-6 py-5
-						transition-[top] duration-500
+						transition-[top] duration-1000
 						${goingUp ? 'top-0' : 'top-[-72px]'}
-						${scrolled ? 'shadow-md dark:shadow-lg dark:shadow-gray-900' : ''}
+						${scrolled ? 'shadow-md dark:shadow-gray-900' : ''}
 						`}
 		>
 			<nav className="max-w-[1024px] mx-auto flex flex-col sm:flex-row sm:items-end sm:justify-between">

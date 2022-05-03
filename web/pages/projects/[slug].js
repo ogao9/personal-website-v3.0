@@ -1,8 +1,8 @@
-import MetaHead from '../../components/MetaHead';
-//import BlockContent from '@sanity/block-content-to-react'
-//import { getProjectPaths, getProjectData, urlFor } from "../../lib/sanity";
-import client from '../../client'
 import groq from 'groq'
+import BlockContent from '@sanity/block-content-to-react'
+import MetaHead from '../../components/MetaHead';
+import client from '../../lib/client'
+import {urlFor} from '../../lib/utils'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
@@ -10,18 +10,12 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 export default function SingleProjectDetails({ project }) {
     return (
         <>
-            <MetaHead title={`Oliver Gao | ${project.title}`} description="An overview and analysis of my project"/>
+            <MetaHead title={`${project.title}`} description="An overview and analysis of my project"/>
 
-            <main className="px-8 md:pl-16 lg:pl-48 py-16">
-                <section className="flex flex-wrap justify-between items-end mb-12 max-w-4xl">
-                    <div>
-                        <h1 className="text-5xl font-semibold mb-4 mr-4">{project.title}</h1>
-                        <h3 className="text-base">
-                            {project.technologies}
-                        </h3>
-                    </div>
-                    <div>
-                        <h3 className="mt-2 mb-4 font-semibold">Exhibit</h3>
+            <div className="max-w-3xl mx-auto py-12 sm:pt-20">
+                <section>
+                    <div className='mb-4'>
+                        <h1 className="text-4xl lg:text-5xl font-semibold mb-2">{project.title}</h1>
                         {project.externalLink &&
                             <a href={project.externalLink} target="_blank" rel="noreferrer">
                                 <p className="projectLink">Live Demo <FontAwesomeIcon icon={faArrowRight} className="inline w-2 ml-1 arrow"/></p>
@@ -34,25 +28,20 @@ export default function SingleProjectDetails({ project }) {
                             </a>
                         }
                     </div>
-                </section>
-
-                {/* <section className="max-w-4xl">
                     <img
                         src={urlFor(project.image).url()}
-                        alt="project cover"
-                        className="w-full h-auto object-cover"
+                        alt={`Cover image for my project: ${project.title}`}
+                        className="w-full object-cover aspect-video"
                     />
-                </section> */}
+                </section>
 
-                {/* <section className="max-w-4xl">
-                    <article className="prose prose-lg dark:prose-dark max-w-full">
-                        <BlockContent
-                            blocks={projectDetails.body}
-                            imageOptions={{ w: 800, h: 450, fit: "max" }}
-                        />
-                    </article>
-                </section> */}
-            </main>
+                <article className="prose prose-lg dark:prose-dark max-w-full mt-4">
+                    <BlockContent
+                        blocks={project.body}
+                        imageOptions={{ w: 800, h: 450, fit: "max" }}
+                    />
+                </article>
+            </div>
         </>
     );
 }

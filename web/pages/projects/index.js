@@ -1,13 +1,8 @@
 import Link from 'next/link'
 import groq from 'groq'
-import imageUrlBuilder from '@sanity/image-url'
-import client from '../../client'
+import client from '../../lib/client';
+import { urlFor } from '../../lib/utils';
 import MetaHead from '../../components/MetaHead'
-
-
-function urlFor (source) {
-	return imageUrlBuilder(client).image(source)
-}
 
 
 function ProjectCard({ project }) {

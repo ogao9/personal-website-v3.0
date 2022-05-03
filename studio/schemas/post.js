@@ -23,6 +23,11 @@ export default {
       },
     },
     {
+      name: 'publishedAt',
+      title: 'Published at',
+      type: 'datetime',
+    },
+    {
       name: 'author',
       title: 'Author',
       type: 'reference',
@@ -31,21 +36,17 @@ export default {
     {
       name: 'mainImage',
       title: 'Main image',
+      description: 'Use an image with an aspect ratio of 16:9',
       type: 'image',
       options: {
         hotspot: true,
       },
     },
     {
-      name: 'categories',
-      title: 'Categories',
-      type: 'array',
-      of: [{type: 'reference', to: {type: 'category'}}],
-    },
-    {
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime',
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: {type: 'category'},
     },
     {
       name: 'body',

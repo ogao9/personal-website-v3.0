@@ -17,6 +17,17 @@ module.exports = {
 				'trappedDarkness' :'#0A1D2F',
 				'awesomeViolet' : '#a8b2d1',
 			},
+			animation: {
+				toast: 'fadeIn 5s forwards',
+			  },
+			keyframes: {
+				'fadeIn': {
+				  '0%': {opacity: '0'},
+				  '40%': {opacity: '1'},
+				  '75%': {opacity: '1'},
+				  '100%': {opacity: '0'},
+				},
+			},
 		},
 	},
 	plugins: [

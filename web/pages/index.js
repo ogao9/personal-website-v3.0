@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
 		<MetaHead
-			title="Oliver Gao"
+			title="Home"
 			description="Hi! I'm Oliver. I'm a student at the University of Michigan studying Computer Science"
 		/>
 
