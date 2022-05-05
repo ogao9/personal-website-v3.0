@@ -23,7 +23,7 @@ export default function About() {
 				<div className="lg:mr-12">
 					<section className="max-w-xl md:text-lg">
 						<p className="mb-6">
-							I’m a second-year student at the <span className="text-maize font-semibold">University of Michigan</span> studying computer science and data science.
+							I’m a second-year student at the <span className="text-yellow-500 font-semibold">University of Michigan</span> studying computer science and data science.
 							I'm interested in building meaningful software and extracting valuable insight from data to do good in the world.
 						</p>
 						<p className="mb-6">
@@ -33,18 +33,23 @@ export default function About() {
 							Besides tech related things, I enjoy running, playing the violin in the Michigan Pops Orchestra, watching Youtube videos, and eating food.
 						</p>
 					</section>
-					<section className="flex space-x-8 my-10">
-						<a href="https://www.linkedin.com/in/oliver-gao/" target="_blank" rel="noreferrer">
-							<FontAwesomeIcon icon={faLinkedinIn} size="lg" /> LinkedIn
+					<section className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-8 my-10">
+						<a href="https://www.linkedin.com/in/oliver-gao/" target="_blank" rel="noreferrer" className="about-link">
+							<FontAwesomeIcon icon={faLinkedinIn} size="lg" className="mr-1 aspect-square" />LinkedIn
 						</a>
-						<a href="https://github.com/ogao9" target="_blank" rel="noreferrer">
-							<FontAwesomeIcon icon={faGithub} size="lg"/> Github
+						<a href="https://github.com/ogao9" target="_blank" rel="noreferrer" className="about-link">
+							<FontAwesomeIcon icon={faGithub} size="lg" className="mr-1 aspect-square"/>Github
 						</a>
 						<Link href="/resume.pdf">
-							<a><FontAwesomeIcon icon={faFilePdf} size="lg"/> Resume</a> 
+							<a target="blank" className="about-link">
+								<FontAwesomeIcon icon={faFilePdf} size="lg" className="mr-1 aspect-square"/>Resume
+							</a> 
 						</Link>
 						<Link href="/contact">
-							<a><FontAwesomeIcon icon={faPaperPlane} size="lg"/> Contact Me</a> 
+							<a className="about-link">
+								<FontAwesomeIcon icon={faPaperPlane} size="lg" className="mr-1 aspect-square"/>
+								Contact Me
+							</a> 
 						</Link>
 					</section>
 				</div>

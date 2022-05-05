@@ -1,10 +1,8 @@
 import MetaHead from '../../components/MetaHead'
-import client from '../../lib/client'
-import groq from 'groq'
 import BlockContent from '@sanity/block-content-to-react'
-
+import groq from 'groq'
+import client from '../../lib/client'
 import { urlFor, prettyDate } from "../../lib/utils";
-
 
 
 export default function Post({post}) {
@@ -36,11 +34,10 @@ export default function Post({post}) {
                     />
                 </section>
 
-
-                <article className="prose prose-lg dark:prose-dark max-w-full">
+                <article className="prose prose-lg dark:prose-dark max-w-none">
                     <BlockContent
                         blocks={post.body}
-                        imageOptions={{ w: 480, h: 360, fit: "max" }}
+                        imageOptions={{ fit: "max" }}
                     />
                 </article>
             </div>

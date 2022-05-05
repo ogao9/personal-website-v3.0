@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons'
 
 export default function Home() {
-  return (
-    <>
+	return (
+	<>
 		<MetaHead
 			title="Home"
 			description="Hi! I'm Oliver. I'm a student at the University of Michigan studying Computer Science"
@@ -25,17 +25,17 @@ export default function Home() {
 
 			<section className="w-full flex justify-center space-x-6 pt-20">
 				<Link href="/projects">
-					<a><button className="px-3 py-2">
-						View my work <FontAwesomeIcon icon={faLongArrowAltRight} className="ml-2 text-yellow-500"/>
+					<a><button className="home-arrow px-3 py-2">
+						View my work <FontAwesomeIcon icon={faLongArrowAltRight} className="arrow ml-1 text-yellow-500"/>
 					</button></a>
 				</Link>
 				<Link href="/about">
-					<a><button className="px-3 py-2">
-						More about me <FontAwesomeIcon icon={faLongArrowAltRight} className="ml-2 text-yellow-500"/>
+					<a><button className="home-arrow px-3 py-2">
+						More about me <FontAwesomeIcon icon={faLongArrowAltRight} className="arrow ml-1 text-yellow-500"/>
 					</button></a>
 				</Link>
 			</section>
 		</div>
-    </>
-  )
+	</>
+	)
 }

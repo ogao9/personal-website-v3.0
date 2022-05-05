@@ -2,9 +2,8 @@ import { useState } from "react"
 import MetaHead from "../components/MetaHead";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane, faSquareEnvelope, faSpinner} from '@fortawesome/free-solid-svg-icons'
+import { faSquareEnvelope, faSpinner} from '@fortawesome/free-solid-svg-icons'
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons"
-
 
 export default function Contact() {
 	return (
@@ -37,9 +36,6 @@ export default function Contact() {
 }
 
 // We won't do spam protection. Instead, we will just limit our "Inbox" on Notion to 50 messages
-// Data to collect for form submission:
-// 		1. Name, Email, Message
-// 		2. Timestamp on submit
 const ContactForm = () => {
 	const [formValues, setFormValues] = useState({name: "", email: "", message: ""});
 
@@ -68,21 +64,22 @@ const ContactForm = () => {
             body: JSON.stringify(formValues),
         })
 		.then((res) => {
-			if(res.status === 401){
-				res.json().then( data => setError(data.status))
-			}
-			else{
+			if(res.status === 201){
 				setSuccess(true);
 				setFormValues({name: "", email: "", message: ""}); // reset the form on success
 			}
+			else if(res.status == 403){
+				setError("Inbox is full. Please try again later.")
+			}
+			else{
+				setError("Sorry, something went wrong. Message failed to send.")
+			}
 		})
 		.catch((err) => {
-			setError(true); 
-			console.log(err);
+			setError("Sorry, something went wrong. Message failed to send."); 
 		});
 
-		setTimeout(() => { setLoading(false); }, 500);
-		
+		setTimeout(() => { setLoading(false); }, 500); // make sure spinner is visible for long enough
 	}
 
 	return(
@@ -101,6 +98,7 @@ const ContactForm = () => {
 					focus:ring-0 focus:border-black"
 					onChange={(e) => handleChange(e, "name")}
 					value={formValues.name}
+					required
 				/>
 			</label>
 			<label className="block mb-6">
@@ -117,6 +115,7 @@ const ContactForm = () => {
 					focus:ring-0 focus:border-black"
 					onChange={(e) => handleChange(e, "email")}
 					value={formValues.email}
+					required
 				/>
 			</label>
 			<label className="block mb-6">
@@ -133,6 +132,7 @@ const ContactForm = () => {
 					rows="3"
 					onChange={(e) => handleChange(e, "message")}
 					value={formValues.message}
+					required
 				/>
 			</label>
 
@@ -144,17 +144,17 @@ const ContactForm = () => {
 				{loading ? <FontAwesomeIcon icon={faSpinner} className="w-5 animate-spin"/> : <span>Send</span>}
 			</button>
 
-			
-
 			{success && 
-				<div className="bg-green-100 text-black-text border-2 border-green-700 rounded px-3 py-2 mt-2 animate-toast">
+				<div className="bg-green-100 dark:bg-green-800 text-black-text border-2 border-green-700 rounded px-3 py-2 mt-2 animate-toast">
 					<b>Success!</b> Your message was sent!
-				</div> }
+				</div> 
+			}
 
 			{error &&
-				<div className="bg-red-100 text-black-text border-2 border-red-700 rounded px-3 py-2 mt-2 animate-toast">
-					<b>Sorry, something went wrong. Message failed to send.</b>
-				</div>}
+				<div className="bg-red-100 dark:bg-red-800 text-black-text border-2 border-red-700 rounded px-3 py-2 mt-2 animate-toast">
+					<b>Error!</b> {error}
+				</div>
+			}
 		</form>
 	)
 }

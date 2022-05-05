@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState, useEffect} from "react"
-
 import ThemeToggler from './ThemeToggler'
 import useScrollDirection from "./useScrollDirection"
 
@@ -58,7 +57,7 @@ export default function Navbar({ open, setOpen}) {
 	}
 
 	return (
-		<div className={`sticky h-[72px] z-50 opacity-95
+		<div className={`sticky h-[72px] z-50 sm:opacity-95
 						bg-white text-black dark:bg-trappedDarkness dark:text-awesomeViolet 
 						px-6 py-5
 						transition-[top] duration-1000
@@ -79,17 +78,16 @@ export default function Navbar({ open, setOpen}) {
 
 				{ (open || screenWidth > 640) && 
 				(<div className="absolute top-full inset-x-0 text-center sm:relative sm:w-max">
-					<ul className={`w-full flex flex-col space-y-12
-								   sm:w-max sm:flex-row sm:items-center sm:space-y-0 sm:space-x-8 sm:h-auto
-								   pb-4 sm:pb-0
-								   ${open ? 'bg-white dark:bg-trappedDarkness h-screen pt-20 text-xl' : 'h-0'}
+					<ul className={`w-full flex flex-col space-y-12 sm:space-y-0
+								   sm:w-max sm:flex-row sm:items-center sm:h-auto
+								   ${open ? 'bg-white dark:bg-trappedDarkness h-screen pt-24 text-xl' : 'h-0'}
 								   `}
 					>
-						<li><Link href="/about"><a>About</a></Link></li>
-						<li><Link href="/projects"><a>Projects</a></Link></li>
-						<li><Link href="/blog"><a>Blog</a></Link></li>
-						<li className="sm:hidden"><Link href="/contact"><a>Contact</a></Link></li>
-						<li><ThemeToggler/></li>
+						<li><Link href="/about"><a className="nav-link">About</a></Link></li>
+						<li><Link href="/projects"><a className="nav-link">Projects</a></Link></li>
+						<li><Link href="/blog"><a className="nav-link">Blog</a></Link></li>
+						<li className="sm:hidden"><Link href="/contact"><a className="nav-link">Contact</a></Link></li>
+						<li className="sm:ml-3"><ThemeToggler/></li>
 					</ul>
 				</div>)
 				}
@@ -97,4 +95,3 @@ export default function Navbar({ open, setOpen}) {
 		</div>
 	)
 }
-

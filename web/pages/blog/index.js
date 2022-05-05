@@ -10,16 +10,16 @@ import { faPen } from '@fortawesome/free-solid-svg-icons'
 
 function BlogStrip({post}){
     return(
-        <div className="flex max-w-2xl items-center justify-between border-b mb-8 pb-2">
+        <div className="flex max-w-2xl items-center justify-between border-b dark:border-awesomeViolet mb-8 pb-2">
             <div className="flex-initial mr-4">
-                <h1 className="text-lg sm:text-2xl font-bold">{post.title}</h1>
+                <h1 className="text-xl font-bold">{post.title}</h1>
                 <h3 className="hidden text-sm sm:block sm:text-base">{post.excerpt}</h3>
 
-                <section className="flex text-xs sm:text-sm text-gray-700 dark:text-gray-50 mt-2">
+                <section className="flex text-sm sm:text-sm mt-2">
 					<span>{prettyDate(post.publishedAt)}</span><div className="px-1">&middot;</div>
 					<span>{getReadingTime(post.body)}</span><div className="px-1">&middot;</div>
 
-                    <div className="bg-gray-200 text-gray-700 rounded-xl px-1 sm:px-2">
+                    <div className="bg-gray-200 text-gray-700 dark:bg-slate-700 dark:text-awesomeViolet rounded-xl px-1 sm:px-2">
                         {post.category}
                     </div>
                 </section>
@@ -29,7 +29,7 @@ function BlogStrip({post}){
                 <img
                     src={urlFor(post.mainImage).url()}
                     alt="Blog Cover Image"
-                    className="w-20 sm:w-28 aspect-video"
+                    className="w-20 sm:w-28 aspect-[4/3] object-cover"
                 />
             </div>
         </div>
@@ -42,7 +42,7 @@ export default function Blog({ posts }) {
 		<>
 			<MetaHead
 				title="Blog"
-				description="Welcome to my blog."
+				description="Welcome to my blog! A peaceful place to enjoy a hot cup of tea and read some thoughtful content."
 			/>
 			
 			<div className="pt-16 sm:pt-20">
@@ -52,11 +52,11 @@ export default function Blog({ posts }) {
 						<FontAwesomeIcon icon={faPen} className="text-maize ml-6"/>
 					</h1>
 					<p className="max-w-lg">
-						Welcome to my cafe. A peaceful place to enjoy a hot cup of tea, enjoy the plants around, and read thoughtful content.
+						Welcome to my blog! A peaceful place to enjoy a hot cup of tea and read some thoughtful content.
 					</p>
 				</section>
 
-				<section className="">
+				<section>
 					{
 						posts.map((obj, idx) => (
 							<Link href={`/blog/${obj.slug}`} key={idx}>
@@ -86,7 +86,7 @@ export async function getStaticProps(){
                 "_key": _id
                 }
         }
-	}|order(date desc)`
+	}|order(publishedAt desc)`
 
 	const posts =  await client.fetch(query)
 

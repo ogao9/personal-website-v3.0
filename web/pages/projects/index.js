@@ -1,36 +1,12 @@
+import { useState } from 'react';
 import Link from 'next/link'
+import MetaHead from '../../components/MetaHead'
 import groq from 'groq'
 import client from '../../lib/client';
 import { urlFor } from '../../lib/utils';
-import MetaHead from '../../components/MetaHead'
 
-
-function ProjectCard({ project }) {
-    return (
-        <Link href={`/projects/${project.slug}`}>
-            <a>
-                <article className="grid grid-rows-[max-content_4fr_1fr] w-full h-full max-w-xs border dark:border-gray-800 shadow-sm ">
-                    <section className="mb-3 overflow-hidden">
-                        <img
-                            src={urlFor(project.image).url()}
-                            alt={`Cover photo for my ${project.title} project`}
-                            className="object-cover aspect-video"
-                        />
-                    </section>
-
-                    <section className="mb-2 px-3">
-                        <h2 className="text-2xl font-bold mb-1">{project.title}</h2>
-                        <p className="leading-snug">{project.description}</p>
-                    </section>
-                    
-                    <section className="self-end mb-2 px-3">
-                        <p>React / Python / Data </p>
-                    </section>
-                </article>
-            </a>
-        </Link>
-    );
-}
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Projects({projects}) {
@@ -59,13 +35,62 @@ export default function Projects({projects}) {
 	)
 }
 
+function ProjectCard({ project }) {
+	const [hover, setHover] = useState(false);
+
+    return (
+        <Link href={`/projects/${project.slug}`}>
+            <a onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+                <article className="grid grid-rows-[max-content_4fr_1fr] 
+									max-w-xs w-full h-full 
+									border dark:border-gray-800
+									dark:bg-[#0d243a]
+									rounded-md shadow-md hover:shadow-lg"
+				>
+                    <section className="relative mb-3">
+						<img
+							src={urlFor(project.image).url()}
+							alt={`Cover photo for my ${project.title} project`}
+							className="object-cover aspect-video rounded-md"
+						/>
+						{hover && <ImageOverlay/>}
+                    </section>
+
+                    <section className="mb-2 px-3">
+                        <h2 className="text-2xl font-bold mb-1">{project.title}</h2>
+                        <p className="leading-snug">{project.description}</p>
+                    </section>
+                    
+                    <section className="self-end opacity-80 mb-2 px-3">
+                        <p>{project.category}</p>
+                    </section>
+                </article>
+            </a>
+        </Link>
+    );
+}
+
+
+function ImageOverlay(){
+    return (
+		<div className='absolute top-0 inset-0 w-full h-full bg-gray-900 opacity-90 rounded-md grid place-items-center text-white text-center'>
+			<div>
+				<FontAwesomeIcon icon={faCircleInfo} size="lg"/>
+				<p className=' text-lg'>View the Details</p>
+			</div>
+		</div>
+	)
+}
+
 
 export async function getStaticProps(){
 	const query = groq`*[_type == "Project"]{
 		title,
 		description,
 		"slug" : slug.current,
-		image
+		image,
+		category,
+		date
 	}|order(date desc)`
 
 	const projects =  await client.fetch(query)

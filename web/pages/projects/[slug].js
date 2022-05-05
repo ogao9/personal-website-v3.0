@@ -5,7 +5,9 @@ import client from '../../lib/client'
 import {urlFor} from '../../lib/utils'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
+
 
 export default function SingleProjectDetails({ project }) {
     return (
@@ -14,17 +16,20 @@ export default function SingleProjectDetails({ project }) {
 
             <div className="max-w-3xl mx-auto py-12 sm:pt-20">
                 <section>
-                    <div className='mb-4'>
-                        <h1 className="text-4xl lg:text-5xl font-semibold mb-2">{project.title}</h1>
+                    <div className='mb-5'>
+                        <h1 className="text-4xl lg:text-5xl font-semibold mb-4">{project.title}</h1>
+
                         {project.externalLink &&
-                            <a href={project.externalLink} target="_blank" rel="noreferrer">
-                                <p className="projectLink">Live Demo <FontAwesomeIcon icon={faArrowRight} className="inline w-2 ml-1 arrow"/></p>
+                            <a href={project.externalLink} target="_blank" rel="noreferrer" className='project-link block mb-2'>
+                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="mr-1 "/>
+                                Live Example
                             </a>
                         }
                         
                         {project.githubLink &&
-                            <a href={project.githubLink} target="_blank" rel="noreferrer">
-                                <p className="projectLink">Github Repository<FontAwesomeIcon icon={faArrowRight} className="inline w-2 ml-1 arrow"/></p>
+                            <a href={project.githubLink} target="_blank" rel="noreferrer" className='project-link block mb-1'>
+                                <FontAwesomeIcon icon={faGithub} className="mr-1"/>
+                                Github Repository
                             </a>
                         }
                     </div>
@@ -38,7 +43,7 @@ export default function SingleProjectDetails({ project }) {
                 <article className="prose prose-lg dark:prose-dark max-w-full mt-4">
                     <BlockContent
                         blocks={project.body}
-                        imageOptions={{ w: 800, h: 450, fit: "max" }}
+                        imageOptions={{ fit: "max" }}
                     />
                 </article>
             </div>
