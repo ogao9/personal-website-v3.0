@@ -67,7 +67,7 @@ export default function Navbar({ open, setOpen}) {
 		>
 			<nav className="max-w-[1024px] mx-auto flex flex-col sm:flex-row sm:items-end sm:justify-between">
 				<Link href="/">
-					<a><Logo/></a>
+					<a className="w-max"><Logo/></a>
 				</Link>
 
 				<div className="absolute top-0 right-0 px-6 pt-8 sm:hidden" onClick={menuToggleClick}>
@@ -84,24 +84,16 @@ export default function Navbar({ open, setOpen}) {
 								   `}
 					>
 						<li>
-							<Link href="/about">
-								<a className="nav-link" onClick={() =>setOpen(false)}>About</a>
-							</Link>
+							<Link href="/about"><a className="nav-link" onClick={() =>setOpen(false)}>About</a></Link>
 						</li>
 						<li>
-							<Link href="/projects">
-								<a className="nav-link" onClick={() =>setOpen(false)}>Projects</a>
-							</Link>
+							<Link href="/projects"><a className="nav-link" onClick={() =>setOpen(false)}>Projects</a></Link>
 						</li>
 						<li>
-							<Link href="/blog">
-								<a className="nav-link" onClick={() =>setOpen(false)}>Blog</a>
-							</Link>
+							<Link href="/blog"><a className="nav-link" onClick={() =>setOpen(false)}>Blog</a></Link>
 						</li>
 						<li className="sm:hidden">
-							<Link href="/contact">
-								<a className="nav-link" onClick={() =>setOpen(false)}>Contact</a>
-							</Link>
+							<Link href="/contact"><a className="nav-link" onClick={() =>setOpen(false)}>Contact</a></Link>
 						</li>
 						<li className="sm:ml-3"><ThemeToggler/></li>
 					</ul>

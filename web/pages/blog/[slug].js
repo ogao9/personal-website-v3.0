@@ -10,7 +10,7 @@ export default function Post({post}) {
         <>
             <MetaHead title={post.title} description={post.excerpt}/>
 
-            <div className="max-w-3xl mx-auto py-12 sm:pt-20">
+            <div className="max-w-3xl mx-auto pt-12 sm:pt-20">
                 <section className="mb-4">
                     <h1 className="text-3xl lg:text-4xl font-bold mb-1">{post.title}</h1>
                     <p className="text-base sm:text-lg mb-4">{post.excerpt}</p>
