@@ -13,7 +13,7 @@ export default function Contact() {
 				description="Send me a message to contact me."
 			/>
 
-			<div className="py-16 sm:pt-20">
+			<div className="pt-16 sm:pt-20">
 				<h1 className="text-5xl font-semibold mb-6">
 					Contact Me
 					{/* <FontAwesomeIcon icon={faPaperPlane} size="sm" className="ml-4 text-maize"/> */}

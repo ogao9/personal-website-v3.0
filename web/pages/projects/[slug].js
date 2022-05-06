@@ -14,7 +14,7 @@ export default function SingleProjectDetails({ project }) {
         <>
             <MetaHead title={`${project.title}`} description="An overview and analysis of my project"/>
 
-            <div className="max-w-3xl mx-auto py-12 sm:pt-20">
+            <div className="max-w-3xl mx-auto pt-12 sm:pt-20">
                 <section>
                     <div className='mb-5'>
                         <h1 className="text-4xl lg:text-5xl font-semibold mb-4">{project.title}</h1>

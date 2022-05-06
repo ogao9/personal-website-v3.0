@@ -17,7 +17,7 @@ export default function Projects({projects}) {
 				description="A collection of my personal and work projects."
 			/>
 
-			<div className="pt-16 sm:pt-20 sm:pb-20">
+			<div className="pt-12 sm:pt-20">
 				<section className="pb-12">
 					<h1 className="text-6xl sm:text-7xl font-semibold mb-3">Projects</h1>
 					<p className='pl-1'>A collection of my personal and work projects. Click on each project to learn more!</p>
@@ -44,7 +44,7 @@ function ProjectCard({ project }) {
                 <article className="grid grid-rows-[max-content_4fr_1fr] 
 									max-w-xs w-full h-full 
 									border dark:border-gray-800
-									dark:bg-[#0d243a]
+									dark:bg-[#0c2236]
 									rounded-md shadow-md hover:shadow-lg"
 				>
                     <section className="relative mb-3">
